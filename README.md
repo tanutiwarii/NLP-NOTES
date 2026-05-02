@@ -4,7 +4,7 @@
 
 This repository serves as a comprehensive collection of Jupyter notebooks designed to teach and demonstrate fundamental concepts in Natural Language Processing (NLP). Natural Language Processing is a subfield of artificial intelligence that focuses on the interaction between computers and humans through natural language. The goal is to read, decipher, understand, and make sense of human language in a manner that is valuable.
 
-These notebooks are structured to provide hands-on experience with NLP techniques, starting from basic concepts and progressing to more advanced topics. Each notebook includes theoretical explanations, code implementations, and practical examples.
+These notebooks are structured to provide hands-on experience with NLP techniques, starting from basic concepts and progressing to advanced topics including deep learning with recurrent neural networks. Each notebook includes theoretical explanations, code implementations, and practical examples.
 
 ## Table of Contents
 
@@ -43,11 +43,14 @@ These notebooks are structured to provide hands-on experience with NLP technique
 | jupyter | 1.0.0 | 3.8+ | Active |
 | jupyterlab | 4.0.5 | 3.8+ | Active |
 | nltk | 3.8.1 | 3.6+ | Stable |
+| gensim | 4.3.2 | 3.8+ | Active |
 | numpy | 1.24.3 | 3.9+ | Stable |
 | pandas | 2.0.3 | 3.9+ | Active |
 | matplotlib | 3.7.2 | 3.9+ | Active |
 | seaborn | 0.12.2 | 3.8+ | Stable |
 | scikit-learn | 1.3.0 | 3.9+ | Active |
+| tensorflow | 2.13.0 | 3.9+ | Active |
+| tensorflow-hub | 0.13.0 | 3.9+ | Active |
 
 ## Notebooks
 
@@ -82,6 +85,29 @@ Word embeddings are dense vector representations of words that capture semantic 
 - Word2Vec and GloVe embeddings
 - Implementation of embedding layers in neural networks
 - Visualization of word embeddings
+
+### 4. Recurrent Neural Networks (`4-RNN.ipynb`)
+
+This notebook introduces Recurrent Neural Networks (RNNs) for sequential data processing. Key topics include:
+
+- Understanding RNN architecture and memory retention
+- Character-level text generation using RNNs
+- Sequence prediction and temporal dependencies
+- Building RNN models with TensorFlow/Keras
+- Training RNNs on sequential data
+- Applications in NLP and time series forecasting
+
+### 5. Gated Recurrent Units (`5-GRU.ipynb`)
+
+This advanced notebook explores Gated Recurrent Units (GRUs), a more sophisticated RNN variant. Topics covered:
+
+- GRU architecture: Update and Reset gates
+- Advantages of GRUs over basic RNNs (gradient flow, memory)
+- Time series forecasting with GRUs
+- Temperature prediction using historical data
+- Building GRU models with TensorFlow/Keras
+- Data preprocessing for sequential models
+- Model training and evaluation metrics
 
 ## Prerequisites
 
@@ -137,7 +163,7 @@ This project uses the following Python libraries. Each is essential for differen
   - **POS Tagging**: Identifying parts of speech in sentences (`pos_tag()`)
   - **Named Entity Recognition (NER)**: Extracting entities like people, places, organizations (`ne_chunk()`)
   - **Stop Words**: Common words to filter out ("the", "a", "is", etc.)
-- Used in: All three notebooks (1-Basic_NLP, 2-Text_Normalization, 3-Embedding_Techniques)
+- Used in: 1-Basic_NLP, 2-Text_Normalization, 3-Embedding_Techniques
 - Installation: `pip install nltk==3.8.1`
 - First-time data download:
   ```python
@@ -149,6 +175,17 @@ This project uses the following Python libraries. Each is essential for differen
   nltk.download('maxent_ne_chunker')  # NER models
   ```
 
+**Gensim (v4.3.2)**
+- Purpose: Library for topic modeling and word embeddings
+- Key Features:
+  - **Word2Vec**: Training word embeddings from text corpora
+  - **FastText**: Character-level embeddings for handling out-of-vocabulary words
+  - **Topic Modeling**: Latent Dirichlet Allocation (LDA) for document clustering
+  - **Document Similarity**: Finding similar documents using vector representations
+  - **Corpus Processing**: Efficient handling of large text collections
+- Used in: 3-Embedding_Techniques for word embeddings and topic modeling
+- Installation: `pip install gensim==4.3.2`
+
 ### Scientific Computing & Data Analysis
 
 **NumPy (v1.24.3)**
@@ -157,7 +194,7 @@ This project uses the following Python libraries. Each is essential for differen
   - Fast mathematical operations on arrays and matrices
   - Foundation for pandas and scikit-learn
   - Used for numerical text encoding and vector operations
-- Used in: All notebooks for numerical computations
+- Used in: 3-Embedding_Techniques, 4-RNN, 5-GRU for numerical computations and data processing
 - Installation: `pip install numpy==1.24.3`
 
 **Pandas (v2.0.3)**
@@ -166,7 +203,7 @@ This project uses the following Python libraries. Each is essential for differen
   - DataFrames for organizing text data in tabular format
   - Easy data filtering, grouping, and transformation
   - CSV and Excel file handling
-- Used in: 3-Embedding_Techniques for organizing text datasets
+- Used in: 3-Embedding_Techniques, 5-GRU for organizing text datasets and time series data
 - Installation: `pip install pandas==2.0.3`
 
 ### Data Visualization
@@ -198,8 +235,32 @@ This project uses the following Python libraries. Each is essential for differen
   - **Classification models**: Support Vector Machines (SVM), Naive Bayes, etc.
   - **Text preprocessing**: CountVectorizer for bag-of-words models
   - **Model evaluation**: Cross-validation, metrics, performance evaluation
-- Used in: 3-Embedding_Techniques for TF-IDF and text classification
+- Used in: 3-Embedding_Techniques (TF-IDF), 5-GRU (data scaling)
 - Installation: `pip install scikit-learn==1.3.0`
+
+### Deep Learning & Neural Networks
+
+**TensorFlow (v2.13.0)**
+- Purpose: Open-source deep learning framework for building neural networks
+- Key Features:
+  - **Keras API**: High-level neural network API (included in TensorFlow 2.x)
+  - **RNNs and LSTMs**: For sequential data processing and text generation
+  - **GRUs**: Gated Recurrent Units for better gradient flow
+  - **Embedding Layers**: Converting categorical data to dense vectors
+  - **Optimizers**: Adam, SGD, and other optimization algorithms
+  - **Model Building**: Sequential and Functional API for model construction
+- Used in: 3-Embedding_Techniques (embeddings), 4-RNN (character generation), 5-GRU (time series forecasting)
+- Installation: `pip install tensorflow==2.13.0`
+
+**TensorFlow Hub (v0.13.0)**
+- Purpose: Repository of pre-trained machine learning models
+- Key Features:
+  - **Pre-trained Embeddings**: Universal Sentence Encoder, BERT models
+  - **Transfer Learning**: Fine-tuning pre-trained models on custom data
+  - **Model Loading**: Easy import of trained models for inference
+  - **Embedding Extraction**: Getting vector representations from text
+- Used in: 3-Embedding_Techniques for loading pre-trained word embeddings
+- Installation: `pip install tensorflow-hub==0.13.0`
 
 ## Installation
 
@@ -238,6 +299,7 @@ pip install jupyterlab==4.0.5
 
 # NLP core library
 pip install nltk==3.8.1
+pip install gensim==4.3.2
 
 # Scientific computing
 pip install numpy==1.24.3
@@ -249,6 +311,10 @@ pip install seaborn==0.12.2
 
 # Machine learning
 pip install scikit-learn==1.3.0
+
+# Deep learning
+pip install tensorflow==2.13.0
+pip install tensorflow-hub==0.13.0
 ```
 
 Then download NLTK data:
@@ -268,7 +334,7 @@ If you prefer Anaconda/Miniconda:
 ```bash
 conda create -n nlp_env python=3.10
 conda activate nlp_env
-conda install jupyter jupyterlab nltk numpy pandas matplotlib seaborn scikit-learn
+conda install jupyter jupyterlab nltk gensim numpy pandas matplotlib seaborn scikit-learn tensorflow tensorflow-hub
 ```
 
 ## Usage
