@@ -1,28 +1,77 @@
-# Core Jupyter Environment
-# =======================
-jupyter==1.0.0              # Interactive computing environment for running .ipynb notebooks
-jupyterlab==4.0.5           # Enhanced Jupyter interface with better UI and extensions
+# ==============================================================================
+# NLP and Deep Learning Notebooks - Project Dependencies
+# Python 3.8+ required
+# ==============================================================================
 
-# Natural Language Processing
-# ===========================
-nltk==3.8.1                 # Natural Language Toolkit - core NLP library for tokenization, stemming, lemmatization, POS tagging, NER
-gensim==4.3.2               # Library for topic modeling, word embeddings (Word2Vec, FastText), and document similarity
+# ============================= JUPYTER ENVIRONMENT =============================
+jupyter==1.0.0
+jupyterlab==4.0.5
+ipython>=7.0.0
 
-# Scientific Computing & Data Analysis
-# ====================================
-numpy==1.24.3               # Numerical computing library - array operations, mathematical functions
-pandas==2.0.3               # Data manipulation and analysis - DataFrames, Series, data cleaning
+# ============================= CORE NLP LIBRARIES =============================
+nltk==3.8.1
+gensim==4.3.2
 
-# Data Visualization
-# ==================
-matplotlib==3.7.2           # 2D plotting library - line plots, histograms, scatter plots
-seaborn==0.12.2             # Statistical data visualization built on matplotlib - heatmaps, distributions
+# ============================= DATA PROCESSING & ANALYSIS =============================
+numpy==1.24.3
+pandas==2.0.3
 
-# Machine Learning
-# ================
-scikit-learn==1.3.0         # Machine learning library - TF-IDF vectorization, text classification models
+# ============================= DATA VISUALIZATION =============================
+matplotlib==3.7.2
+seaborn==0.12.2
 
-# Deep Learning & Neural Networks
-# ================================
-tensorflow==2.13.0          # Deep learning framework - neural networks, RNNs, LSTMs, embedding layers
-tensorflow-hub==0.13.0      # Library for loading and using pre-trained models from TensorFlow Hub
+# ============================= MACHINE LEARNING =============================
+scikit-learn==1.3.0
+
+# ============================= DEEP LEARNING - TENSORFLOW =============================
+tensorflow==2.13.0
+tensorflow-hub==0.13.0
+
+# ============================= DEEP LEARNING - PYTORCH =============================
+torch>=1.10.0
+torchvision>=0.11.0
+torchaudio>=0.10.0
+
+# ============================= OPTIONAL PACKAGES =============================
+# Uncomment as needed for your environment
+
+# For GPU acceleration with TensorFlow (requires CUDA toolkit)
+# tensorflow-gpu==2.13.0
+
+# For PyTorch GPU support (uncomment one based on your CUDA version)
+# CUDA 11.8 support:
+# torch==2.0.1 --index-url https://download.pytorch.org/whl/cu118
+# torchvision==0.15.2 --index-url https://download.pytorch.org/whl/cu118
+# torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
+
+# CUDA 12.1 support:
+# torch==2.0.1 --index-url https://download.pytorch.org/whl/cu121
+# torchvision==0.15.2 --index-url https://download.pytorch.org/whl/cu121
+# torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu121
+
+# Additional visualization and analysis tools
+# plotly==5.17.0  # Interactive plots
+# scikit-plot==0.3.7  # ML plot utilities
+# wordcloud==1.9.2  # Word cloud visualization
+
+# ============================= NOTEBOOK USAGE =============================
+# Notebook 1: 1-Basic_NLP.ipynb
+#   - nltk, pandas, numpy, matplotlib
+
+# Notebook 2: 2-Text_Normalization.ipynb
+#   - nltk, pandas, numpy, matplotlib
+
+# Notebook 3: 3-Embedding_Techniques.ipynb
+#   - nltk, gensim, scikit-learn, numpy, pandas, matplotlib, seaborn, tensorflow, tensorflow-hub
+
+# Notebook 4: 4-RNN.ipynb
+#   - tensorflow, numpy, pandas, matplotlib
+
+# Notebook 5: 5-GRU.ipynb
+#   - Part A (GRU): tensorflow, numpy, pandas, scikit-learn, matplotlib
+#   - Part B (Seq2Seq): torch, numpy
+
+# ============================= INSTALLATION INSTRUCTIONS =============================
+# Install all: pip install -r requirements.txt
+# Install with GPU: See commented sections above for your CUDA version
+# Verify install: python -c "import tensorflow as tf; import torch; print('Success!')"

@@ -2,9 +2,9 @@
 
 ## Overview
 
-This repository serves as a comprehensive collection of Jupyter notebooks designed to teach and demonstrate fundamental concepts in Natural Language Processing (NLP). Natural Language Processing is a subfield of artificial intelligence that focuses on the interaction between computers and humans through natural language. The goal is to read, decipher, understand, and make sense of human language in a manner that is valuable.
+This repository serves as a comprehensive collection of Jupyter notebooks designed to teach and demonstrate fundamental concepts in Natural Language Processing (NLP) and Deep Learning. Natural Language Processing is a subfield of artificial intelligence that focuses on the interaction between computers and humans through natural language. The goal is to read, decipher, understand, and make sense of human language in a manner that is valuable.
 
-These notebooks are structured to provide hands-on experience with NLP techniques, starting from basic concepts and progressing to advanced topics including deep learning with recurrent neural networks. Each notebook includes theoretical explanations, code implementations, and practical examples.
+These notebooks are structured to provide hands-on experience with NLP techniques, starting from basic concepts and progressing to advanced topics including deep learning with recurrent neural networks, gated recurrent units, and sequence-to-sequence models. Each notebook includes theoretical explanations, code implementations, and practical examples.
 
 ## Table of Contents
 
@@ -25,14 +25,15 @@ These notebooks are structured to provide hands-on experience with NLP technique
 ### Minimum Requirements
 - **Operating System**: Windows, macOS, or Linux
 - **Python Version**: 3.8 or higher
-- **RAM**: 2 GB minimum (4 GB recommended)
-- **Disk Space**: 500 MB for installation + dependencies
-- **Internet Connection**: Required for NLTK data download
+- **RAM**: 4 GB minimum (8 GB recommended for deep learning)
+- **Disk Space**: 1 GB for installation + dependencies
+- **Internet Connection**: Required for NLTK data and model downloads
 
 ### Recommended Setup
 - **Operating System**: macOS or Linux (better package compatibility)
 - **Python Version**: 3.10 or higher
-- **RAM**: 8 GB or more
+- **RAM**: 16 GB or more (for training neural networks)
+- **GPU**: NVIDIA GPU with CUDA support (optional, for faster training)
 - **Python Environment Manager**: Conda or venv
 - **Terminal/Command Prompt**: bash, zsh, or PowerShell
 
@@ -51,6 +52,7 @@ These notebooks are structured to provide hands-on experience with NLP technique
 | scikit-learn | 1.3.0 | 3.9+ | Active |
 | tensorflow | 2.13.0 | 3.9+ | Active |
 | tensorflow-hub | 0.13.0 | 3.9+ | Active |
+| torch | 1.10.0+ | 3.8+ | Active |
 
 ## Notebooks
 
@@ -85,6 +87,7 @@ Word embeddings are dense vector representations of words that capture semantic 
 - Word2Vec and GloVe embeddings
 - Implementation of embedding layers in neural networks
 - Visualization of word embeddings
+- Transfer learning with pre-trained embeddings
 
 ### 4. Recurrent Neural Networks (`4-RNN.ipynb`)
 
@@ -96,11 +99,13 @@ This notebook introduces Recurrent Neural Networks (RNNs) for sequential data pr
 - Building RNN models with TensorFlow/Keras
 - Training RNNs on sequential data
 - Applications in NLP and time series forecasting
+- Vanishing/exploding gradient problems
 
 ### 5. Gated Recurrent Units (`5-GRU.ipynb`)
 
-This advanced notebook explores Gated Recurrent Units (GRUs), a more sophisticated RNN variant. Topics covered:
+This advanced notebook explores two major deep learning architectures:
 
+#### Part A: GRU (Gated Recurrent Units)
 - GRU architecture: Update and Reset gates
 - Advantages of GRUs over basic RNNs (gradient flow, memory)
 - Time series forecasting with GRUs
@@ -108,6 +113,23 @@ This advanced notebook explores Gated Recurrent Units (GRUs), a more sophisticat
 - Building GRU models with TensorFlow/Keras
 - Data preprocessing for sequential models
 - Model training and evaluation metrics
+- Data scaling with MinMaxScaler
+
+#### Part B: Seq2Seq Models (Sequence-to-Sequence)
+- Sequence-to-Sequence architecture overview
+- Encoder-Decoder framework
+- Teacher forcing mechanism for training
+- Implementation using PyTorch
+- GRU-based Encoder for sequence encoding
+- GRU-based Decoder for sequence generation
+- Applications: Machine translation, text summarization, dialogue systems
+- Dynamic batching and variable-length sequences
+
+**Key Features:**
+- Time-series forecasting with GRUs (100-step input, daily temperature prediction)
+- Seq2Seq implementation with teacher forcing (configurable teacher_forcing_ratio=0.5-0.7)
+- Detailed encoder-decoder architecture with embedding layers
+- Complete training pipeline and inference examples
 
 ## Prerequisites
 
@@ -116,6 +138,7 @@ Before running these notebooks, ensure you have the following:
 - **Python 3.8 or higher**: The notebooks are written in Python and require a compatible version.
 - **Jupyter Notebook or JupyterLab**: For interactive execution of the notebooks.
 - **Basic understanding of Python programming**: Familiarity with Python syntax, data structures, and libraries like NumPy and Pandas.
+- **Basic machine learning knowledge**: Understanding of neural networks concepts helps with notebooks 4-5.
 - **pip**: Python package manager for installing dependencies.
 
 ## Quick Start
@@ -143,7 +166,7 @@ Then open any `.ipynb` file and start exploring!
 
 ## Dependencies and Libraries
 
-This project uses the following Python libraries. Each is essential for different NLP tasks:
+This project uses the following Python libraries. Each is essential for different NLP and deep learning tasks:
 
 ### Core Jupyter Environment
 
@@ -203,7 +226,8 @@ This project uses the following Python libraries. Each is essential for differen
   - DataFrames for organizing text data in tabular format
   - Easy data filtering, grouping, and transformation
   - CSV and Excel file handling
-- Used in: 3-Embedding_Techniques, 5-GRU for organizing text datasets and time series data
+  - Time-series data support
+- Used in: 1-Basic_NLP, 2-Text_Normalization, 3-Embedding_Techniques, 5-GRU for organizing text and time-series datasets
 - Installation: `pip install pandas==2.0.3`
 
 ### Data Visualization
@@ -214,7 +238,8 @@ This project uses the following Python libraries. Each is essential for differen
   - Line plots, histograms, scatter plots, bar charts
   - Customizable colors, labels, and formatting
   - Foundation for other visualization libraries
-- Used in: 3-Embedding_Techniques for visualizing embeddings and distributions
+  - Time-series visualization
+- Used in: 3-Embedding_Techniques, 4-RNN, 5-GRU for visualizing embeddings, distributions, and training results
 - Installation: `pip install matplotlib==3.7.2`
 
 **Seaborn (v0.12.2)**
@@ -234,23 +259,27 @@ This project uses the following Python libraries. Each is essential for differen
   - **TF-IDF Vectorization**: Converting text to numerical features (`TfidfVectorizer`)
   - **Classification models**: Support Vector Machines (SVM), Naive Bayes, etc.
   - **Text preprocessing**: CountVectorizer for bag-of-words models
+  - **Data Scaling**: MinMaxScaler for normalizing features (0-1 range)
   - **Model evaluation**: Cross-validation, metrics, performance evaluation
-- Used in: 3-Embedding_Techniques (TF-IDF), 5-GRU (data scaling)
+- Used in: 3-Embedding_Techniques (TF-IDF), 5-GRU (MinMaxScaler for time-series data)
 - Installation: `pip install scikit-learn==1.3.0`
 
-### Deep Learning & Neural Networks
+### Deep Learning - TensorFlow/Keras
 
 **TensorFlow (v2.13.0)**
 - Purpose: Open-source deep learning framework for building neural networks
 - Key Features:
   - **Keras API**: High-level neural network API (included in TensorFlow 2.x)
   - **RNNs and LSTMs**: For sequential data processing and text generation
-  - **GRUs**: Gated Recurrent Units for better gradient flow
+  - **GRUs**: Gated Recurrent Units for better gradient flow and memory retention
   - **Embedding Layers**: Converting categorical data to dense vectors
+  - **Sequential Models**: Layer-by-layer neural network construction
   - **Optimizers**: Adam, SGD, and other optimization algorithms
-  - **Model Building**: Sequential and Functional API for model construction
+  - **Loss Functions**: mean_squared_error, categorical_crossentropy, etc.
+  - **Training Pipeline**: fit(), predict(), evaluate() methods
 - Used in: 3-Embedding_Techniques (embeddings), 4-RNN (character generation), 5-GRU (time series forecasting)
 - Installation: `pip install tensorflow==2.13.0`
+- For GPU support: `pip install tensorflow-gpu==2.13.0` (requires CUDA)
 
 **TensorFlow Hub (v0.13.0)**
 - Purpose: Repository of pre-trained machine learning models
@@ -261,6 +290,26 @@ This project uses the following Python libraries. Each is essential for differen
   - **Embedding Extraction**: Getting vector representations from text
 - Used in: 3-Embedding_Techniques for loading pre-trained word embeddings
 - Installation: `pip install tensorflow-hub==0.13.0`
+
+### Deep Learning - PyTorch
+
+**PyTorch (v1.10.0+)**
+- Purpose: Deep learning framework with dynamic computation graphs
+- Key Features:
+  - **Dynamic Graphs**: Computational graphs change at runtime (flexible)
+  - **RNN/GRU Modules**: `nn.RNN()`, `nn.GRU()` for recurrent networks
+  - **Embedding Layer**: `nn.Embedding()` for word/token embeddings
+  - **Sequential Models**: `nn.Sequential()` for layer composition
+  - **Optimizers**: Adam, SGD for training neural networks
+  - **GPU Support**: CUDA and cuDNN integration for GPU acceleration
+  - **Autograd**: Automatic differentiation for backpropagation
+- Used in: 5-GRU (Seq2Seq models with Encoder-Decoder architecture)
+- Installation: `pip install torch` or `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118` (for CUDA 11.8)
+- Supported CUDA versions: CUDA 10.2, 11.7, 11.8, 12.1
+
+**torchvision (v0.11.0+)** & **torchaudio (v0.10.0+)**
+- Supplementary PyTorch libraries for computer vision and audio processing
+- Installation: Bundled with PyTorch installation
 
 ## Installation
 
@@ -275,7 +324,8 @@ This project uses the following Python libraries. Each is essential for differen
 2. **Create a virtual environment (recommended):**
    ```bash
    python -m venv nlp_env
-   source nlp_env/bin/activate  # On Windows: nlp_env\Scripts\activate
+   source nlp_env/bin/activate  # On macOS/Linux
+   # nlp_env\Scripts\activate   # On Windows
    ```
 
 3. **Install all dependencies:**
@@ -284,8 +334,13 @@ This project uses the following Python libraries. Each is essential for differen
    ```
 
 4. **Download required NLTK datasets:**
-   ```python
+   ```bash
    python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('averaged_perceptron_tagger'); nltk.download('maxent_ne_chunker')"
+   ```
+
+5. **Verify installation:**
+   ```bash
+   python verify_installation.py
    ```
 
 ### Option 2: Manual Installation
@@ -312,9 +367,12 @@ pip install seaborn==0.12.2
 # Machine learning
 pip install scikit-learn==1.3.0
 
-# Deep learning
+# Deep learning - TensorFlow
 pip install tensorflow==2.13.0
 pip install tensorflow-hub==0.13.0
+
+# Deep learning - PyTorch
+pip install torch torchvision torchaudio
 ```
 
 Then download NLTK data:
@@ -334,7 +392,23 @@ If you prefer Anaconda/Miniconda:
 ```bash
 conda create -n nlp_env python=3.10
 conda activate nlp_env
-conda install jupyter jupyterlab nltk gensim numpy pandas matplotlib seaborn scikit-learn tensorflow tensorflow-hub
+conda install -c conda-forge -c pytorch jupyter jupyterlab nltk gensim numpy pandas matplotlib seaborn scikit-learn tensorflow tensorflow-hub pytorch torchvision torchaudio
+```
+
+### Option 4: GPU Support (Optional)
+
+For NVIDIA GPU acceleration:
+
+```bash
+# TensorFlow with GPU support
+pip install tensorflow-gpu==2.13.0
+
+# PyTorch with CUDA 11.8
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Verify GPU availability
+python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+python -c "import torch; print(torch.cuda.is_available())"
 ```
 
 ## Usage
@@ -361,6 +435,15 @@ JupyterLab offers a more modern interface with better file management and extens
 4. **Observe the output** (results, visualizations, errors)
 5. **Modify the code** to experiment and learn
 
+### Notebook Execution Order
+
+**Recommended Learning Path:**
+1. `1-Basic_NLP.ipynb` - Start here for fundamentals
+2. `2-Text_Normalization.ipynb` - Learn data preprocessing
+3. `3-Embedding_Techniques.ipynb` - Understand word vectors
+4. `4-RNN.ipynb` - Learn sequence models
+5. `5-GRU.ipynb` - Master advanced architectures (GRU and Seq2Seq)
+
 ### Notebook Execution Guide
 
 - **Sequential Execution**: Run cells in order (top to bottom) as variables and imports depend on previous cells
@@ -369,36 +452,12 @@ JupyterLab offers a more modern interface with better file management and extens
 - **Variable Explorer**: Use `%whos` command to see all defined variables
 - **Cell Magic**: Commands like `%timeit`, `%%time` are included for performance measurement
 
-### Troubleshooting Common Issues
+### Dataset Requirements
 
-**Issue: Module not found (ImportError)**
-```
-Solution: Ensure all packages are installed
-pip install -r requirements.txt
-jupyter lab --version  # Verify installation
-```
-
-**Issue: NLTK data not found**
-```
-Solution: Download NLTK data
-import nltk
-nltk.download('all')  # Download all NLTK resources
-```
-
-**Issue: Kernel not responding**
-```
-Solution: Restart the kernel
-Kernel > Restart Kernel (in menu)
-or
-jupyter notebook --kernel=python3 (restart Jupyter)
-```
-
-**Issue: Port already in use (Jupyter won't start)**
-```
-Solution: Use a different port
-jupyter notebook --port 8889
-jupyter lab --port 8890
-```
+- **Dataset File**: `data.csv` (required for notebook 5-GRU.ipynb)
+  - Format: CSV with 'Date' column and temperature values
+  - Size: ~8,000 rows (8,000 days of data)
+  - Location: Place in project root directory
 
 ## Examples
 
@@ -498,36 +557,99 @@ plt.show()
 - `pandas`: DataFrame organization
 - `matplotlib` & `seaborn`: Visualization and heatmaps
 
-### Example 3: Named Entity Recognition (NER)
+### Example 3: GRU Time-Series Forecasting
 
-This example extracts named entities from text:
+This example shows temperature prediction using GRU:
 
 ```python
-from nltk import word_tokenize, pos_tag, ne_chunk
-import nltk
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import GRU, Dense
+from tensorflow.keras.optimizers import Adam
 
-# Ensure NER models are downloaded
-nltk.download('averaged_perceptron_tagger')
-nltk.download('maxent_ne_chunker')
+# Load and preprocess data
+df = pd.read_csv('data.csv', parse_dates=['Date'], index_col='Date')
+scaler = MinMaxScaler(feature_range=(0, 1))
+scaled_data = scaler.fit_transform(df.values)
 
-# Sample text
-text = "Apple Inc. was founded by Steve Jobs in Cupertino, California."
+# Prepare data
+def create_dataset(data, time_step=100):
+    X, y = [], []
+    for i in range(len(data) - time_step - 1):
+        X.append(data[i:(i + time_step), 0])
+        y.append(data[i + time_step, 0])
+    return np.array(X), np.array(y)
 
-# 1. Tokenize the text (nltk)
-tokens = word_tokenize(text)
+X, y = create_dataset(scaled_data, time_step=100)
+X = X.reshape(X.shape[0], X.shape[1], 1)
 
-# 2. Apply POS tagging (nltk)
-pos_tags = pos_tag(tokens)
+# Build and train model
+model = Sequential([
+    GRU(units=50, return_sequences=True, input_shape=(100, 1)),
+    GRU(units=50),
+    Dense(units=1)
+])
+model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
+model.fit(X, y, epochs=10, batch_size=32)
 
-# 3. Extract named entities (nltk)
-named_entities = ne_chunk(pos_tags)
-
-print(named_entities)
-# Output shows: PERSON (Steve Jobs), GPE (Cupertino, California), ORG (Apple Inc.)
+# Make predictions
+input_sequence = scaled_data[-100:].reshape(1, 100, 1)
+predicted = model.predict(input_sequence)
+predicted_temp = scaler.inverse_transform(predicted)
+print(f"Predicted temperature: {predicted_temp[0][0]:.2f}°C")
 ```
 
 **Packages Used:**
-- `nltk`: Tokenization, POS tagging, and NER extraction
+- `pandas`: Data loading and manipulation
+- `numpy`: Array operations
+- `scikit-learn`: Data scaling
+- `tensorflow.keras`: GRU model construction and training
+
+### Example 4: Seq2Seq Encoder-Decoder
+
+This example demonstrates sequence-to-sequence learning with PyTorch:
+
+```python
+import torch
+import torch.nn as nn
+
+# Define Encoder
+class Encoder(nn.Module):
+    def __init__(self, input_dim, emb_dim, hidden_dim):
+        super().__init__()
+        self.embedding = nn.Embedding(input_dim, emb_dim)
+        self.rnn = nn.GRU(emb_dim, hidden_dim)
+
+    def forward(self, src):
+        embedded = self.embedding(src)
+        outputs, hidden = self.rnn(embedded)
+        return hidden
+
+# Define Decoder
+class Decoder(nn.Module):
+    def __init__(self, output_dim, emb_dim, hidden_dim):
+        super().__init__()
+        self.embedding = nn.Embedding(output_dim, emb_dim)
+        self.rnn = nn.GRU(emb_dim, hidden_dim)
+        self.fc = nn.Linear(hidden_dim, output_dim)
+
+    def forward(self, input, hidden):
+        input = input.unsqueeze(0)
+        embedded = self.embedding(input)
+        output, hidden = self.rnn(embedded, hidden)
+        prediction = self.fc(output.squeeze(0))
+        return prediction, hidden
+
+# Usage
+encoder = Encoder(input_dim=10, emb_dim=8, hidden_dim=16)
+decoder = Decoder(output_dim=10, emb_dim=8, hidden_dim=16)
+```
+
+**Packages Used:**
+- `torch`: PyTorch framework
+- `torch.nn`: Neural network modules
 
 ## Troubleshooting
 
@@ -572,6 +694,16 @@ source nlp_env/bin/activate
 pip install -r requirements.txt
 ```
 
+**Issue: PyTorch installation fails**
+```bash
+# Solution: Use official PyTorch installation command
+# Visit https://pytorch.org/get-started/locally/ for your system
+# Example for CPU:
+pip install torch torchvision torchaudio
+# Example for CUDA 11.8:
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
 ### Common Runtime Issues
 
 **Issue: Kernel not responding**
@@ -597,6 +729,7 @@ netstat -ano | findstr :8888   # Windows (find PID, then taskkill /PID <pid>)
 # Solution: Clear notebook variables
 %reset  # Clear all variables
 # Or restart kernel and run specific cells only
+# For deep learning: reduce batch size or model complexity
 ```
 
 **Issue: NLTK downloads fail (network error)**
@@ -614,6 +747,29 @@ else:
 nltk.download('stopwords')  # Should work now
 ```
 
+**Issue: TensorFlow/PyTorch not using GPU**
+```python
+# TensorFlow GPU check
+import tensorflow as tf
+print(tf.config.list_physical_devices('GPU'))
+
+# PyTorch GPU check
+import torch
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0))
+
+# Solution: Install GPU-enabled versions
+pip install tensorflow-gpu  # TensorFlow GPU
+pip install torch --index-url https://download.pytorch.org/whl/cu118  # PyTorch with CUDA
+```
+
+**Issue: Data file (data.csv) not found**
+```
+Solution: Ensure data.csv is in the project root directory
+Path: /Users/tannutiwari/Downloads/Projects/Jupyter/data.csv
+Format: CSV with 'Date' column and temperature values
+```
+
 ### Verification Steps
 
 To verify your installation is complete and working:
@@ -624,13 +780,23 @@ import sys
 print(f"Python: {sys.version}")
 
 # Check all required packages
-packages = ['nltk', 'numpy', 'pandas', 'matplotlib', 'seaborn', 'sklearn']
+packages = ['nltk', 'gensim', 'numpy', 'pandas', 'matplotlib', 'seaborn', 'sklearn', 'tensorflow', 'torch']
 for package in packages:
     try:
         __import__(package)
         print(f"✓ {package} installed")
     except ImportError:
         print(f"✗ {package} NOT installed")
+
+# Check TensorFlow GPU
+import tensorflow as tf
+print(f"\nTensorFlow version: {tf.__version__}")
+print(f"GPU available: {tf.config.list_physical_devices('GPU')}")
+
+# Check PyTorch
+import torch
+print(f"PyTorch version: {torch.__version__}")
+print(f"CUDA available: {torch.cuda.is_available()}")
 
 # Check NLTK data
 import nltk
@@ -652,6 +818,7 @@ Please ensure:
 - Notebooks include clear explanations and comments
 - New concepts are well-documented
 - Examples are practical and educational
+- All dependencies are listed in requirements.txt
 
 ## License
 
@@ -661,14 +828,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Tannu Tiwari**
 - GitHub: [@tanutiwarii](https://github.com/tanutiwarii)
-
+- Email: [your-email@example.com]
 
 ## Acknowledgments
 
 - NLTK library for natural language processing tools
 - Jupyter community for the interactive computing environment
-- Open-source NLP community for inspiration and resources
+- TensorFlow and PyTorch teams for excellent deep learning frameworks
+- Open-source NLP and ML community for inspiration and resources
+- Papers: [GRU (Cho et al., 2014)](https://arxiv.org/abs/1406.1078), [Seq2Seq (Sutskever et al., 2014)](https://arxiv.org/abs/1409.3215)
 
 ---
 
 *Happy Learning! 🚀*
+
+Last Updated: May 5, 2026
